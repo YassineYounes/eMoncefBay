@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+
+<h:body>
+
+    <ui:composition template="./navBar.xhtml">
+        <ui:define name="content">
+        <!-- Page Content -->
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <h:graphicImage value="resources/images/emonsefbay.jpg" width="260px" height="50px" />
+                        <br/><br/>
+                        <div class="list-group">
+                            <ui:repeat value="#{CategoryManager.categories}" var="category" >
+                                    <h:link class="list-group-item" value="#{category.name}" outcome="category">
+                                        <f:param name="id" value="#{category.CID}" />
+                                    </h:link>
+                            </ui:repeat>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <div class="row carousel-holder">
+
+                            <div class="col-md-12">
+                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <h:graphicImage  class="slide-image"  value="resources/images/slide1.jpg"/>
+                                        </div>
+                                        <div class="item">
+                                            <h:graphicImage class="slide-image"  value="resources/images/slide2.jpeg"/>
+                                        </div>
+                                        <div class="item">
+                                            <h:graphicImage  class="slide-image" value="resources/images/slide3.jpg"/>
+                                        </div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <ui:repeat value="#{ArticleManager.articles}" var="article">
+                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                    <div class="thumbnail">
+                                        <h:link outcome="articledescription">
+                                            <h:graphicImage value="#{article.image}" style="max-height: 150px" />
+                                            <div class="caption">
+                                                <h:outputText value="#{article.directPrice}Dt"/>
+                                                <h4><h:outputText value="#{article.title}"/>
+                                                </h4>
+                                                <p><h:outputText value="#{article.description}"/>.</p>
+                                            </div>
+                                            <f:param name="id" value="#{article.AID}" />
+                                        </h:link>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.container -->
+        </ui:define>
+    </ui:composition>
+    
+</h:body>
+
+</html>

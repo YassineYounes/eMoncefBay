@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- Bootstrap Core CSS -->
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <!-- Custom CSS -->
+        <link href="resources/css/shop-homepage.css" rel="stylesheet"/>
+
+        <title>eMoncefBay</title>
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </h:head>
+
+    <h:body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.xhtml">eMoncefBay</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="history.xhtml">Older Transactions</a>
+                    </li>
+                    <li>
+                        <a href="article.xhtml">Insert Article</a>
+                    </li>
+                    <c:if test="#{LoginManager.sessionExist}" >
+                        <li>
+                            <a href="login.xhtml">Log in</a>
+                        </li>
+                    </c:if>
+                    </ul>
+                    <c:if test="#{not LoginManager.sessionExist}" >
+                        <ul class="nav navbar-nav navbar-right" >
+                        <li>
+                            <h:form >
+                                <br/>
+                                <h:commandButton value="Log out" action="#{LoginManager.destroySession}"/>
+                            </h:form>
+                        </li>
+                        </ul>
+                    </c:if>
+                
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+        
+        
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright eMoncefBay 2017</p>
+                </div>
+            </div>
+        </footer>
+        </hr>
+    </div>
+    <!-- /.container -->
+<!-- jQuery -->
+    <script src="resources/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="resources/js/bootstrap.min.js"></script>
+
+    </h:body>
+
+</html>

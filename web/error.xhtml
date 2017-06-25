@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta charset="UTF-8"/>
+  <title>Login eMoncefBayS</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'/>
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+  
+</h:head>
+
+<h:body>
+  
+    <div class="pen-title">
+      <h1>Login To eMoncefBay</h1>
+    </div>
+    <div class="pen-title">
+        <h1 style="color: red">Wrong Credentials</h1>
+    </div>
+    <div class="container">
+      <div class="card"></div>
+      <div class="card">
+        <h1 class="title">Login</h1>
+        <h:form>
+          <div class="input-container">
+              <label >Email</label>
+              <h:inputText required="true"  requiredMessage="email not valid"  value="#{LoginManager.email}"></h:inputText>
+            <div class="bar"></div>
+          </div>
+          <div class="input-container">
+              <label >Password</label>
+            <h:inputText  required="true"  requiredMessage="Password Not Valid"  value="#{LoginManager.password}"></h:inputText>
+            <div class="bar"></div>
+          </div>
+          <div class="button-container">
+            <span><h:commandButton action="#{LoginManager.validation}" value="Login"></h:commandButton></span>
+          </div>
+
+        </h:form>
+      </div>
+      <div class="card alt">
+        <div class="toggle"></div>
+        <h1 class="title">Register
+          <div class="close"></div>
+        </h1>
+        <h:form>
+           <div class="input-container">
+              <label><h:outputText value="First name" /></label>
+		<h:inputText id="firstName" value="#{RegisterManager.member.firstName}"></h:inputText>
+            <div class="bar"></div>
+          </div>
+            <div class="input-container">
+              <label><h:outputText value="Last name" /></label>
+		<h:inputText id="lastName" value="#{RegisterManager.member.lastName}"/>
+            <div class="bar"></div>
+          </div>
+            
+          <div class="input-container">
+            <label >Email</label>
+            <h:inputText required="true" requiredMessage="email not valid"  value="#{RegisterManager.member.email}"/>
+            <div class="bar"></div>
+          </div>
+          <div class="input-container">
+            
+            <label>Password</label>
+		<h:inputSecret id="password" value="#{RegisterManager.member.password}"/>
+          </div>
+          <div class="input-container">
+                <label >Phone Number</label>
+		<h:inputText id="numT" value="#{RegisterManager.member.numT}"/>
+            <div class="bar"></div>
+          </div>
+          <div class="button-container">
+              <span><h:commandButton action="#{RegisterManager.validation}" value="Login"></h:commandButton></span>
+          </div>
+        </h:form>
+      </div>
+    </div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+
+</h:body>
+</html>

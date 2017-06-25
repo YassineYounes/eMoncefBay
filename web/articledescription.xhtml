@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  <h:head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Article</title>
+        <!-- Bootstrap Core CSS -->
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <h:outputStylesheet library="css" name="shop-homepage.css"/>
+    <h:outputStylesheet name="article.css" library="css"/>
+    
+  </h:head>
+
+  <h:body>
+    
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.xhtml">eMoncefBay</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="history.xhtml">Older Transactions</a>
+                    </li>
+                    <li>
+                        <a href="article.xhtml">Insert Article</a>
+                    </li>
+                    <c:if test="#{LoginManager.sessionExist}" >
+                        <li>
+                            <a href="login.xhtml">Log in</a>
+                        </li>
+                    </c:if>
+                    </ul>
+                    <c:if test="#{not LoginManager.sessionExist}" >
+                        <ul class="nav navbar-nav navbar-right" >
+                        <li>
+                            <h:form >
+                                <br/>
+                                <h:commandButton value="Log out" action="#{LoginManager.destroySession}"/>
+                            </h:form>
+                        </li>
+                        </ul>
+                    </c:if>
+                
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content"><h:graphicImage value="#{ArticleManager.find(param['id']).image}" width="400px" height="300px"/>
+						</div>
+						
+					</div>
+					<div class="details col-md-6">
+						<h3 class="product-title"><h:outputText value="#{ArticleManager.find(param['id']).title}" /></h3>
+						<p class="product-description"><h:outputText value="#{ArticleManager.find(param['id']).description}" /></p>
+						<h4 class="price">Current price: <span><h:outputText value="#{ArticleManager.find(param['id']).directPrice}Dt" /></span></h4>
+                                                <br/><br/>
+						<h4 class="price">Betting price: <span><h:outputText  value="#{ArticleManager.getMaxBet(param['id'])}Dt" /></span></h4>
+                                                <br/><br/>
+						<h:form class="action">
+                                                    <h:commandButton class="add-to-cart btn btn-default" value="Buy Article" action="#{ArticleManager.makeSale()}">
+                                                        <f:param name="aid" value="#{param['id']}"/>
+                                                    </h:commandButton>
+                                                    <h:commandButton class="add-to-cart btn btn-default"  style="margin-left: 10px;" value="Make a bet" action="#{ArticleManager.makeBet()}">
+                                                        <f:param name="aid" value="#{param['id']}"/>
+                                                    </h:commandButton>
+                                                    <br/><br/>
+                                                    <div class="col-sm-10">
+                                                        <h:inputText id="bet" class="form-control" value="#{ArticleManager.bet}">
+                                                        </h:inputText>
+                                                        <h:message for="bet" styleClass="error"/>
+                                                    </div>
+                                                </h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright eMoncefBay 2017</p>
+                </div>
+            </div>
+        </footer>
+        </hr>
+    </div>
+    <!-- /.container -->
+<!-- jQuery -->
+    <script src="resources/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="resources/js/bootstrap.min.js"></script>
+
+  </h:body>
+
+    
+</html>
+

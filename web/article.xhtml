@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+    <h:body>
+        <ui:composition template="./navBar.xhtml">
+        <ui:define name="content">
+        <div class="container">
+            <br/>
+            <h:form class="form-horizontal " enctype="multipart/form-data" >
+                <div class=" form-group" >
+                    <h:outputText class="control-label col-sm-2" value="Title:" />
+                    <div class="col-sm-10" >
+                        <h:inputText id="title" class="form-control" value="#{ArticleManager.article.title}" required="true"
+                                 requiredMessage="You must enter a title for the article"/>
+                        <h:message for="title" styleClass="error"/>
+                    </div><br/><br/><br/>
+                    
+                    <h:outputText class="control-label col-sm-2" value="Description:" />
+                    <div class="col-sm-10" >
+                        <h:inputText id="description" class="form-control" value="#{ArticleManager.article.description}" required="true"
+                                 requiredMessage="You must enter a description"/>
+                         <h:message for="description" styleClass="error"/>
+                    </div>
+                    
+                   
+                    <br/><br/><br/>
+                    <h:outputText class="control-label col-sm-2" value="Image:" />
+                    <br/>
+                    <div class="col-sm-10" >
+                        <h:inputFile  value="#{ArticleManager.img}">
+                        <f:passThroughAttribute name ="accept" value="image/*"/>
+                        </h:inputFile>
+                    </div>
+                    <br/><br/>
+                    <h:outputText class="control-label col-sm-2" value="Deadline:" />
+                    <div class="col-sm-10" >
+                        <h:inputText class="form-control" a:type="date" value="#{ArticleManager.article.deadline}" required="true"
+                                 requiredMessage="You must enter a deadline" id="date"><f:convertDateTime pattern="yyyy-MM-dd" />
+                        </h:inputText>
+                            <h:message for="date" styleClass="error"/>
+                    </div><br/><br/><br/>
+                    <h:outputText class="control-label col-sm-2" value="Categorie:" />
+                    <div class="col-sm-10" >
+                        <h:selectOneMenu class="form-control" value="#{ArticleManager.article.CID}">
+                            <f:selectItem itemValue="1" itemLabel="Fashion" />
+                            <f:selectItem itemValue="2" itemLabel="Electronics" />
+                            <f:selectItem itemValue="3" itemLabel="kitchen" />
+                            <f:selectItem itemValue="4" itemLabel="Accessories" />
+                        </h:selectOneMenu>
+                    </div>  <br/><br/><br/>  
+                    <h:outputText class="control-label col-sm-2" value="Bet Price:" />
+                    <div class="col-sm-10" >
+                        <h:inputText class="form-control" value="#{ArticleManager.article.betPrice}" id="price"></h:inputText>
+                    </div><br/><br/><br/>
+                    <h:outputText class="control-label col-sm-2" value="Final Price:"/>
+                    <div class="col-sm-10" >
+                        <h:inputText  class="form-control " value="#{ArticleManager.article.directPrice}" required="true"
+                                      requiredMessage="You must enter a Price"
+                                 id="dprice"/>
+                        <h:message for="dprice" styleClass="error"/>
+                    </div><br/><br/><br/>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <h:commandButton class="btn btn-default" action="#{ArticleManager.validation}" value="Insert Article">
+                        <f:ajax execute="@form" render="@form"/>
+                        </h:commandButton>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+            </ui:define>
+    </ui:composition>
+    </h:body>
+
+</html>
